@@ -1,0 +1,16 @@
+# How to generate the magic: replace the string by braces, then run:
+# python3 -c 'print(repr(open("quine_easy.py", "r").read()))' | clip -i
+MAGIC = open("quine_easy.py", "r").read()
+
+def twist_word(word):
+    if word in KEYWORDS:
+        return word
+    if word in TWISTS:
+        new_word = TWISTS[word]
+    else:
+        random.seed('1337' + word)
+        random.random()
+        random.random()
+        new_word = ''.join(c.upper() if random.random() < 0.5 else c.lower() for c in word)
+        TWISTS[word] = new_word
+    return new_word
