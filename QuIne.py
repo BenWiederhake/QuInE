@@ -1,67 +1,65 @@
 #!/usr/bin/env python3
 
-# a QuIne Is A prOgRAm THat can OutPut ITS Own sOUrce cODE, aNd aVoids
-# trIvial MEaNs.  ThiS prOgRAm Is A QuIne wiTH A TWIsT.
-# if yoU havEn't ALReadY RecOgnIZed THE tWIst, i canNOT HeLp yoU.
+# A QuInE iS a pROgRam thAt CAN OUtpUt ITS Own SoUrcE coDe, And AVOiDS
+# trIvial MEanS.  THiS pROgRam iS a QuInE wITH a twiST.
+# if yOu HAvEN'T aLREadY rECOGnIZeD ThE twiST, I caNnot help yOu.
 
 import random
 
-# tHiNgS THat rEalLY can't chAnGE.
-KeYworDs = [
+# thINgs thAt REallY CAN'T cHAnGE.
+KeyWOrdS = [
     'append', 'def', 'dict', 'else', 'for', 'format', 'if', 'in',
     'import', 'join', 'lower', 'n', 'or', 'print', 'python3', 'random',
     'repr', 'return', 'upper', '#!/usr/bin/env',
 ]
 
-# ThiS Is wHERe THE quine-mAgic hAppeNS!
-MAgic = '#!/usr/bin/env python3\n\n# a QuIne Is A prOgRAm THat can OutPut ITS Own sOUrce cODE, aNd aVoids\n# trIvial MEaNs.  ThiS prOgRAm Is A QuIne wiTH A TWIsT.\n# if yoU havEn\'t ALReadY RecOgnIZed THE tWIst, i canNOT HeLp yoU.\n\nimport random\n\n# tHiNgS THat rEalLY can\'t chAnGE.\nKeYworDs = [\n    \'append\', \'def\', \'dict\', \'else\', \'for\', \'format\', \'if\', \'in\',\n    \'import\', \'join\', \'lower\', \'n\', \'or\', \'print\', \'python3\', \'random\',\n    \'repr\', \'return\', \'upper\', \'#!/usr/bin/env\',\n]\n\n# ThiS Is wHERe THE quine-mAgic hAppeNS!\nMAgic = {}\n\n\n# THe saMe VArIaBLE/fUnCtioN/WhATeVeR nAMe NeEdS to sTAY cONSistENt BETWeen\n# DeFInItIon aNd UsEs.  sO mAKE sUrE THat During A SinglE EXeCUtION Of tHiS\n# pROGRam, ONLY One Case-FLip Is proDuCeD.\ntwISts = dict()\n\n\ndef tWIst_worD(WoRD):\n    if WoRD in KeYworDs:\n        return WoRD\n    if WoRD in twISts:\n        nEW_WoRD = twISts[WoRD]\n    else:\n        nEW_WoRD = \'\'.join(c.upper() if random.random() < 0.5 else c.lower() for c in WoRD)\n        twISts[WoRD] = nEW_WoRD\n    return nEW_WoRD\n\n\ndef TWIsT(THE_sTR):\n    WORds = []\n    curr_wORD = []\n    for c in THE_sTR:\n        if c in \'.:()[] \\\\\\n\\\'\':\n            WORds.append(\'\'.join(curr_wORD))\n            curr_wORD = []\n            WORds.append(c)\n        else:\n            curr_wORD.append(c)\n    WORds.append(\'\'.join(curr_wORD))\n    # wE dON\'t care AbOut emptY \'WORds\'.\n    # ThiS can HappeN on \'\\n\\n\' aNd SimiLAR.\n    return \'\'.join(tWIst_worD(WoRD) for WoRD in WORds)\n\n\n# bUilDs A QuIne fROM A "MAGIC" STRinG.  NoTe THat SKipping THE `tWiSt`\n# iNVOcaTIon wOuld COnveRT tHiS inTo jUst A RegulAR QuIne.\n# (wiTh deAD coDe.)\ndef quIne_FRoM(MaGIc):\n    return MaGIc.format(repr(MaGIc))\n\n\ndef RUn():\n    TWiSTed_MAgiC = TWIsT(MAgic)\n    TwIsTed_qUiNe = quIne_FRoM(TWiSTed_MAgiC)\n    print(TwIsTed_qUiNe)\n\n\nRUn()\n'
+# THiS iS wheRE ThE quINE-MAgiC hAPpENS!
+mAgic = '#!/usr/bin/env python3\n\n# A QuInE iS a pROgRam thAt CAN OUtpUt ITS Own SoUrcE coDe, And AVOiDS\n# trIvial MEanS.  THiS pROgRam iS a QuInE wITH a twiST.\n# if yOu HAvEN\'T aLREadY rECOGnIZeD ThE twiST, I caNnot help yOu.\n\nimport random\n\n# thINgs thAt REallY CAN\'T cHAnGE.\nKeyWOrdS = [\n    \'append\', \'def\', \'dict\', \'else\', \'for\', \'format\', \'if\', \'in\',\n    \'import\', \'join\', \'lower\', \'n\', \'or\', \'print\', \'python3\', \'random\',\n    \'repr\', \'return\', \'upper\', \'#!/usr/bin/env\',\n]\n\n# THiS iS wheRE ThE quINE-MAgiC hAPpENS!\nmAgic = {}\n\n# tHe SAme VARIABLE/FunCtioN/WHateVEr namE nEeds To sTay CoNsistenT bETWEeN\n# defINItiOn And uses.  SO mAkE surE thAt durInG a SiNGLe Execution OF thIs\n# pROgRam, OnLy oNE Case-FliP iS pRODUcEd.\ntWIstS = dict()\n\n\ndef TWisT_wOrD(WORD):\n    if WORD in KeyWOrdS:\n        return WORD\n    if WORD in tWIstS:\n        NeW_woRd = tWIstS[WORD]\n    else:\n        NeW_woRd = \'\'.join(C.upper() if random.random() < 0.5 else C.lower() for C in WORD)\n        tWIstS[WORD] = NeW_woRd\n    return NeW_woRd\n\n\ndef twiST(The_stR):\n    woRds = []\n    cURr_wORd = []\n    for C in The_stR:\n        if C in \'.,:()[] \\\\\\n\\\'\':\n            woRds.append(\'\'.join(cURr_wORd))\n            cURr_wORd = []\n            woRds.append(C)\n        else:\n            cURr_wORd.append(C)\n    woRds.append(\'\'.join(cURr_wORd))\n    # WE don\'T CARE aBoUt EMpTy \'woRds\'.\n    # THiS CAN hAppeN on \'\\n\\n\' And SImiLAR.\n    return \'\'.join(TWisT_wOrD(WORD) for WORD in woRds)\n\n\n# bUilDS a QuInE FroM a "MagIC" StRiNG.  NOte thAt sKippInG ThE `tWIsT`\n# iNVOCation WOUld COnVeRT thIs iNTO juST a reGUlar QuInE.\n# (wiTh deAd coDe.)\ndef QUIne_frOM(mAgiC):\n    return mAgiC.format(repr(mAgiC))\n\n\ndef rUn():\n    twISTED_mAGiC = twiST(mAgic)\n    TWisTEd_QuiNe = QUIne_frOM(twISTED_mAGiC)\n    print(TWisTEd_QuiNe[:-1])\n\n\nrUn()\n'
+
+# tHe SAme VARIABLE/FunCtioN/WHateVEr namE nEeds To sTay CoNsistenT bETWEeN
+# defINItiOn And uses.  SO mAkE surE thAt durInG a SiNGLe Execution OF thIs
+# pROgRam, OnLy oNE Case-FliP iS pRODUcEd.
+tWIstS = dict()
 
 
-# THe saMe VArIaBLE/fUnCtioN/WhATeVeR nAMe NeEdS to sTAY cONSistENt BETWeen
-# DeFInItIon aNd UsEs.  sO mAKE sUrE THat During A SinglE EXeCUtION Of tHiS
-# pROGRam, ONLY One Case-FLip Is proDuCeD.
-twISts = dict()
-
-
-def tWIst_worD(WoRD):
-    if WoRD in KeYworDs:
-        return WoRD
-    if WoRD in twISts:
-        nEW_WoRD = twISts[WoRD]
+def TWisT_wOrD(WORD):
+    if WORD in KeyWOrdS:
+        return WORD
+    if WORD in tWIstS:
+        NeW_woRd = tWIstS[WORD]
     else:
-        nEW_WoRD = ''.join(c.upper() if random.random() < 0.5 else c.lower() for c in WoRD)
-        twISts[WoRD] = nEW_WoRD
-    return nEW_WoRD
+        NeW_woRd = ''.join(C.upper() if random.random() < 0.5 else C.lower() for C in WORD)
+        tWIstS[WORD] = NeW_woRd
+    return NeW_woRd
 
 
-def TWIsT(THE_sTR):
-    WORds = []
-    curr_wORD = []
-    for c in THE_sTR:
-        if c in '.:()[] \\\n\'':
-            WORds.append(''.join(curr_wORD))
-            curr_wORD = []
-            WORds.append(c)
+def twiST(The_stR):
+    woRds = []
+    cURr_wORd = []
+    for C in The_stR:
+        if C in '.,:()[] \\\n\'':
+            woRds.append(''.join(cURr_wORd))
+            cURr_wORd = []
+            woRds.append(C)
         else:
-            curr_wORD.append(c)
-    WORds.append(''.join(curr_wORD))
-    # wE dON't care AbOut emptY 'WORds'.
-    # ThiS can HappeN on '\n\n' aNd SimiLAR.
-    return ''.join(tWIst_worD(WoRD) for WoRD in WORds)
+            cURr_wORd.append(C)
+    woRds.append(''.join(cURr_wORd))
+    # WE don'T CARE aBoUt EMpTy 'woRds'.
+    # THiS CAN hAppeN on '\n\n' And SImiLAR.
+    return ''.join(TWisT_wOrD(WORD) for WORD in woRds)
 
 
-# bUilDs A QuIne fROM A "MAGIC" STRinG.  NoTe THat SKipping THE `tWiSt`
-# iNVOcaTIon wOuld COnveRT tHiS inTo jUst A RegulAR QuIne.
-# (wiTh deAD coDe.)
-def quIne_FRoM(MaGIc):
-    return MaGIc.format(repr(MaGIc))
+# bUilDS a QuInE FroM a "MagIC" StRiNG.  NOte thAt sKippInG ThE `tWIsT`
+# iNVOCation WOUld COnVeRT thIs iNTO juST a reGUlar QuInE.
+# (wiTh deAd coDe.)
+def QUIne_frOM(mAgiC):
+    return mAgiC.format(repr(mAgiC))
 
 
-def RUn():
-    TWiSTed_MAgiC = TWIsT(MAgic)
-    TwIsTed_qUiNe = quIne_FRoM(TWiSTed_MAgiC)
-    print(TwIsTed_qUiNe)
+def rUn():
+    twISTED_mAGiC = twiST(mAgic)
+    TWisTEd_QuiNe = QUIne_frOM(twISTED_mAGiC)
+    print(TWisTEd_QuiNe[:-1])
 
 
-RUn()
-
+rUn()
